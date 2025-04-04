@@ -1,0 +1,53 @@
+DROP TABLE crowd_meter;
+DROP TABLE gym_user;
+DROP TABLE administration;
+
+
+/*DROP TABLE schedule;
+DROP TABLE FAQ; Travis
+DROP TABLE feedback;
+DROP TABLE chef;
+DROP TABLE administration; Travis
+*/
+
+CREATE TABLE gym_user(
+user_id INT(8) NOT NULL ,
+fname VARCHAR(15) NOT NULL ,
+lname VARCHAR(15) NOT NULL ,
+email VARCHAR(50) NOT NULL ,
+address VARCHAR(400) NOT NULL ,
+phone_num VARCHAR(12) NOT NULL ,
+DOB  date NOT NULL,
+PRIMARY KEY (user_id)) ENGINE = InnoDB;
+
+CREATE TABLE crowd_meter(
+
+current Int(3),
+user_id INT(8) NOT NULL ,
+FOREIGN KEY (user_id) REFERENCES gym_user(user_id) ,
+time_entery VARCHAR(4),
+te_am_pm VARCHAR(2),
+PRIMARY KEY (current)) ENGINE = InnoDB;
+
+CREATE TABLE administration (
+    admin_id INT(8) NOT NULL,
+    fname VARCHAR(15) NOT NULL,
+    lname VARCHAR(15) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    PRIMARY KEY (admin_id))
+    ENGINE = InnoDB;
+
+
+
+Insert into gym_user( user_id, fname, lname, email, address, phone_num, DOB ) values( '87959403', 'Travis', 'James','tjames@gmail.com', '203 kimberly rd winchester Va','540-533-6738', '2003-03-01');
+Insert into gym_user( user_id, fname, lname, email, address, phone_num, DOB ) values( '9403229', 'Hurrich', 'en','hurrich@gmail.com', '732 kimberly rd winchester Va','540-533-6738', '2003-04-03');
+
+
+Insert into crowd_meter( current,user_id, time_entry,te_am_pm) values (0,'87959403','3:00', 'pm' );
+Insert into crowd_meter( current,user_id, time_entry,te_am_pm) values (1,'9403229','1:00', 'pm' );
+
+INSERT INTO administration (admin_id, fname, lname, email, password) VALUES 
+(100001, 'Coach', 'Torrico', 'coach.torrico@wau.edu', 'adminpass123'),
+(100002, 'Coach', 'Spring', 'coach.spring@wau.edu', 'securepass456');
+
